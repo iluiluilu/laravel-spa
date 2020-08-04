@@ -37,4 +37,4 @@ RUN rm -rf /var/cache/apk/*
 RUN pecl install xdebug \
 	&& docker-php-ext-enable xdebug
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /usr/share/nginx/api
