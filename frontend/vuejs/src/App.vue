@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <loading ref="loading" />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,7 +8,33 @@
     <router-view />
   </div>
 </template>
-
+<script>
+import Loading from "./components/commons/Loading";
+export default {
+  el: "#app",
+  components: {
+    Loading
+  },
+  data: () => ({
+    toast_counter: 0
+  }),
+  methods: {
+    showToast(title, msg, variant = "success", append = false) {
+      this.toast_counter++;
+      this.$bvToast.toast(msg, {
+        title: title,
+        toaster: "b-toaster-top-center",
+        solid: true,
+        appendToast: append,
+        variant: variant
+      });
+    }
+  },
+  mounted() {
+    this.$loading = this.$refs.loading;
+  }
+};
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
